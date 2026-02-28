@@ -1,4 +1,5 @@
-import { AlertTriangle, CheckCircle2, Circle } from "lucide-react";
+import { AlertTriangle, CheckCircle2, Circle, FileText } from "lucide-react";
+import { useEvidence } from "@/components/consultation/evidence-context";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import type { ChecklistItem, ChecklistStatus } from "@/types";
@@ -28,22 +29,47 @@ const statusConfig: Record<
 	},
 };
 
-function ChecklistItemRow({ item }: { item: ChecklistItem }) {
+const ChecklistItemRow = ({ item }: { item: ChecklistItem }) => {
 	const config = statusConfig[item.status];
+	const { hoveredEvidenceId, setHoveredEvidenceId } = useEvidence();
+
+	const isDimmed =
+		hoveredEvidenceId !== null && hoveredEvidenceId !== item.evidenceId;
+
+	const isHighlighted =
+		hoveredEvidenceId !== null &&
+		item.evidenceId !== undefined &&
+		hoveredEvidenceId === item.evidenceId;
 
 	return (
-		<div className="flex items-start gap-3 border-b py-2 last:border-0">
+		<button
+			className={`group relative flex w-full items-start gap-3 border-b py-2 text-left transition-all duration-300 last:border-0 ${
+				isDimmed ? "opacity-30" : "opacity-100"
+			} ${isHighlighted ? "-mx-2 rounded-md border-transparent bg-primary/5 px-2" : ""}`}
+			onMouseEnter={() => {
+				if (item.evidenceId) {
+					setHoveredEvidenceId(item.evidenceId);
+				}
+			}}
+			onMouseLeave={() => setHoveredEvidenceId(null)}
+			type="button"
+		>
 			<span className="mt-0.5">{config.icon}</span>
 			<div className="min-w-0 flex-1">
-				<p className="font-medium text-sm">{item.question}</p>
+				<p className="flex items-center gap-1.5 font-medium text-sm">
+					{item.question}
+					{item.evidenceId && (
+						<FileText className="h-3 w-3 text-muted-foreground opacity-30 transition-opacity group-hover:opacity-100" />
+					)}
+				</p>
 				{item.answer && (
 					<p className="mt-0.5 text-muted-foreground text-xs">{item.answer}</p>
 				)}
 			</div>
 			<Badge className={config.className}>{config.label}</Badge>
-		</div>
+		</button>
 	);
-}
+};
 
 function CategoryGroup({
 	category,

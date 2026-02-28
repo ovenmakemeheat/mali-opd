@@ -1,0 +1,208 @@
+﻿bunx : src\components\c
+onsultation\checklist-p
+anel.tsx:5:8 lint/corre
+ctness/noUnusedImports 
+ FIXABLE  ΓöüΓöüΓöüΓöüΓ
+öüΓöüΓöüΓöüΓöüΓöü
+At line:1 char:1
++ bunx biome lint . 
+2>&1 | Out-File 
+-FilePath 
+biome-results.txt 
+-Encodi ...
++ 
+~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo     
+         : NotSpecifi  
+  ed: (src\component   
+ s\...ΓöüΓöüΓöüΓöüΓ    
+öü:String) [], Rem    
+oteException
+    + FullyQualifiedEr 
+   rorId : NativeComm  
+  andError
+ 
+
+  ├ù This import is 
+unused.
+  
+    3 Γöé import { 
+Badge } from "@/compone
+nts/ui/badge";
+    4 Γöé import { 
+Card, CardContent, 
+CardHeader, CardTitle 
+} from 
+"@/components/ui/card";
+  > 5 Γöé import { 
+useConsultationStore } 
+from 
+"@/store/consultation";
+      Γöé        ^^^^^^
+^^^^^^^^^^^^^^^^^^
+    6 Γöé import type 
+{ ChecklistItem, 
+ChecklistStatus } from 
+"@/types";
+    7 Γöé 
+  
+  i Unused imports 
+might be the result of 
+an incomplete 
+refactoring.
+  
+  i Safe fix: Remove 
+the unused imports.
+  
+      3   3 Γöé   
+import { Badge } from "
+@/components/ui/badge";
+      4   4 Γöé   
+import { Card, 
+CardContent, 
+CardHeader, CardTitle 
+} from 
+"@/components/ui/card";
+      5     Γöé - impor
+t┬╖{┬╖useConsultationSt
+ore┬╖}┬╖from┬╖"@/store/
+consultation";
+      6   5 Γöé   
+import type { 
+ChecklistItem, 
+ChecklistStatus } from 
+"@/types";
+      7   6 Γöé   
+  
+
+src\components\consulta
+tion\differential-card.
+tsx:4:8 lint/correctnes
+s/noUnusedImports  
+FIXABLE  ΓöüΓöüΓöüΓöüΓö
+üΓöüΓöüΓöüΓöüΓöü
+
+  ├ù This import is 
+unused.
+  
+    2 Γöé import { 
+useEvidence } from "@/c
+omponents/consultation/
+evidence-context";
+    3 Γöé import { 
+Badge } from "@/compone
+nts/ui/badge";
+  > 4 Γöé import { 
+useConsultationStore } 
+from 
+"@/store/consultation";
+      Γöé        ^^^^^^
+^^^^^^^^^^^^^^^^^^
+    5 Γöé import type 
+{ 
+DifferentialDiagnosis 
+} from "@/types";
+    6 Γöé 
+  
+  i Unused imports 
+might be the result of 
+an incomplete 
+refactoring.
+  
+  i Safe fix: Remove 
+the unused imports.
+  
+      2   2 Γöé   
+import { useEvidence } 
+from "@/components/cons
+ultation/evidence-conte
+xt";
+      3   3 Γöé   
+import { Badge } from "
+@/components/ui/badge";
+      4     Γöé - impor
+t┬╖{┬╖useConsultationSt
+ore┬╖}┬╖from┬╖"@/store/
+consultation";
+      5   4 Γöé   
+import type { 
+DifferentialDiagnosis 
+} from "@/types";
+      6   5 Γöé   
+  
+
+src\components\consulta
+tion\symptom-card.tsx:4
+:8 lint/correctness/noU
+nusedImports  FIXABLE  
+ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓö
+üΓöüΓöü
+
+  ├ù This import is 
+unused.
+  
+    2 Γöé import { 
+useEvidence } from "@/c
+omponents/consultation/
+evidence-context";
+    3 Γöé import { 
+Badge } from "@/compone
+nts/ui/badge";
+  > 4 Γöé import { 
+useConsultationStore } 
+from 
+"@/store/consultation";
+      Γöé        ^^^^^^
+^^^^^^^^^^^^^^^^^^
+    5 Γöé import type 
+{ Symptom } from 
+"@/types";
+    6 Γöé 
+  
+  i Unused imports 
+might be the result of 
+an incomplete 
+refactoring.
+  
+  i Safe fix: Remove 
+the unused imports.
+  
+      2  2 Γöé   
+import { useEvidence } 
+from "@/components/cons
+ultation/evidence-conte
+xt";
+      3  3 Γöé   
+import { Badge } from "
+@/components/ui/badge";
+      4    Γöé - import
+┬╖{┬╖useConsultationSto
+re┬╖}┬╖from┬╖"@/store/c
+onsultation";
+      5  4 Γöé   
+import type { Symptom 
+} from "@/types";
+      6  5 Γöé   
+  
+
+Checked 48 files in 84ms. No fixes applied.
+Found 3 errors.
+lint ΓöüΓöüΓöüΓöüΓöüΓöü
+ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓö
+üΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓ
+öüΓöüΓöüΓöüΓöüΓöüΓöüΓöü
+ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓö
+üΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓ
+öüΓöüΓöüΓöüΓöüΓöüΓöüΓöü
+ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓö
+üΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓ
+öüΓöüΓöüΓöüΓöüΓöüΓöüΓöü
+ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓö
+üΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓ
+öüΓöüΓöüΓöüΓöü
+
+  ├ù Some errors were 
+emitted while running 
+checks.
+  
+

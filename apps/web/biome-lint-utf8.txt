@@ -1,0 +1,186 @@
+﻿bunx : src\components\consultation\checklist-panel.tsx:45:3 
+lint/a11y/noNoninteractiveElementInteractions ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü
+At line:1 char:1
++ bunx biome lint . --max-diagnostics=200 > biome-lint.txt 2>&1
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (src\components\...ΓöüΓöüΓöüΓöüΓöü:String) [], RemoteExc 
+   eption
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+
+  ├ù Non-interactive element should not have event handler.
+  
+    44 Γöé 	return (
+  > 45 Γöé 		<div
+       Γöé 		^^^^
+  > 46 Γöé 			className={`group relative flex items-start gap-3 border-b py-2 transition-all 
+duration-300 last:border-0 ${
+        ...
+  > 54 Γöé 			onMouseLeave={() => setHoveredEvidenceId(null)}
+  > 55 Γöé 		>
+       Γöé 		^
+    56 Γöé 			<span className="mt-0.5">{config.icon}</span>
+    57 Γöé 			<div className="min-w-0 flex-1">
+  
+  i Consider replace semantically interactive element like <button/> or <a href/>.
+  
+
+src\components\consultation\checklist-panel.tsx:45:3 lint/a11y/noStaticElementInteractions 
+ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü
+
+  ├ù Static Elements should not be interactive.
+  
+    44 Γöé 	return (
+  > 45 Γöé 		<div
+       Γöé 		^^^^
+  > 46 Γöé 			className={`group relative flex items-start gap-3 border-b py-2 transition-all 
+duration-300 last:border-0 ${
+        ...
+  > 54 Γöé 			onMouseLeave={() => setHoveredEvidenceId(null)}
+  > 55 Γöé 		>
+       Γöé 		^
+    56 Γöé 			<span className="mt-0.5">{config.icon}</span>
+    57 Γöé 			<div className="min-w-0 flex-1">
+  
+  i To add interactivity such as a mouse or key event listener to a static element, give the element 
+an appropriate role value.
+  
+
+src\components\consultation\differential-card.tsx:66:11 
+lint/a11y/noNoninteractiveElementInteractions ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü
+
+  ├ù Non-interactive element should not have event handler.
+  
+    65 Γöé 									return (
+  > 66 Γöé 										<div
+       Γöé 										^^^^
+  > 67 Γöé 											className={`group relative flex items-center gap-1.5 rounded border 
+border-green-200 bg-green-50 px-2 py-1 text-green-800 text-xs transition-all duration-200 
+hover:bg-green-100 ${
+        ...
+  > 76 Γöé 											onMouseLeave={() => setHoveredEvidenceId(null)}
+  > 77 Γöé 										>
+       Γöé 										^
+    78 Γöé 											<span>{evidence.text}</span>
+    79 Γöé 											{evidence.evidenceId && (
+  
+  i Consider replace semantically interactive element like <button/> or <a href/>.
+  
+
+src\components\consultation\differential-card.tsx:66:11 lint/a11y/noStaticElementInteractions 
+ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü
+
+  ├ù Static Elements should not be interactive.
+  
+    65 Γöé 									return (
+  > 66 Γöé 										<div
+       Γöé 										^^^^
+  > 67 Γöé 											className={`group relative flex items-center gap-1.5 rounded border 
+border-green-200 bg-green-50 px-2 py-1 text-green-800 text-xs transition-all duration-200 
+hover:bg-green-100 ${
+        ...
+  > 76 Γöé 											onMouseLeave={() => setHoveredEvidenceId(null)}
+  > 77 Γöé 										>
+       Γöé 										^
+    78 Γöé 											<span>{evidence.text}</span>
+    79 Γöé 											{evidence.evidenceId && (
+  
+  i To add interactivity such as a mouse or key event listener to a static element, give the element 
+an appropriate role value.
+  
+
+src\components\consultation\symptom-card.tsx:33:3 lint/a11y/noNoninteractiveElementInteractions 
+ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü
+
+  ├ù Non-interactive element should not have event handler.
+  
+    32 Γöé 	return (
+  > 33 Γöé 		<div
+       Γöé 		^^^^
+  > 34 Γöé 			className={`group relative flex items-center justify-between gap-3 rounded-md border 
+p-2 text-sm transition-all duration-200 ${
+        ...
+  > 42 Γöé 			onMouseLeave={() => setHoveredEvidenceId(null)}
+  > 43 Γöé 		>
+       Γöé 		^
+    44 Γöé 			<div className="flex min-w-0 flex-1 items-center gap-2">
+    45 Γöé 				<div
+  
+  i Consider replace semantically interactive element like <button/> or <a href/>.
+  
+
+src\components\consultation\symptom-card.tsx:33:3 lint/a11y/noStaticElementInteractions 
+ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü
+
+  ├ù Static Elements should not be interactive.
+  
+    32 Γöé 	return (
+  > 33 Γöé 		<div
+       Γöé 		^^^^
+  > 34 Γöé 			className={`group relative flex items-center justify-between gap-3 rounded-md border 
+p-2 text-sm transition-all duration-200 ${
+        ...
+  > 42 Γöé 			onMouseLeave={() => setHoveredEvidenceId(null)}
+  > 43 Γöé 		>
+       Γöé 		^
+    44 Γöé 			<div className="flex min-w-0 flex-1 items-center gap-2">
+    45 Γöé 				<div
+  
+  i To add interactivity such as a mouse or key event listener to a static element, give the element 
+an appropriate role value.
+  
+
+src\components\consultation\transcript-viewer.tsx:53:8 lint/a11y/noNoninteractiveElementInteractions 
+ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü
+
+  ├ù Non-interactive element should not have event handler.
+  
+    52 Γöé 						return (
+  > 53 Γöé 							<div
+       Γöé 							^^^^
+  > 54 Γöé 								className={`flex cursor-default items-start gap-3 rounded-lg border bg-card p-3 
+text-card-foreground shadow-sm transition-all duration-200 ease-in-out hover:border-primary/40 
+hover:shadow-md ${
+        ...
+  > 63 Γöé 								onMouseLeave={() => setHoveredEvidenceId(null)}
+  > 64 Γöé 							>
+       Γöé 							^
+    65 Γöé 								<span className="mt-0.5 w-4 shrink-0 text-right font-medium text-[10px] 
+text-muted-foreground/60">
+    66 Γöé 									{i + 1}
+  
+  i Consider replace semantically interactive element like <button/> or <a href/>.
+  
+
+src\components\consultation\transcript-viewer.tsx:53:8 lint/a11y/noStaticElementInteractions 
+ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü
+
+  ├ù Static Elements should not be interactive.
+  
+    52 Γöé 						return (
+  > 53 Γöé 							<div
+       Γöé 							^^^^
+  > 54 Γöé 								className={`flex cursor-default items-start gap-3 rounded-lg border bg-card p-3 
+text-card-foreground shadow-sm transition-all duration-200 ease-in-out hover:border-primary/40 
+hover:shadow-md ${
+        ...
+  > 63 Γöé 								onMouseLeave={() => setHoveredEvidenceId(null)}
+  > 64 Γöé 							>
+       Γöé 							^
+    65 Γöé 								<span className="mt-0.5 w-4 shrink-0 text-right font-medium text-[10px] 
+text-muted-foreground/60">
+    66 Γöé 									{i + 1}
+  
+  i To add interactivity such as a mouse or key event listener to a static element, give the element 
+an appropriate role value.
+  
+
+Checked 48 files in 72ms. No fixes applied.
+Found 8 errors.
+lint ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü
+ΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓö
+üΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöüΓöü
+
+  ├ù Some errors were emitted while running checks.
+  
+

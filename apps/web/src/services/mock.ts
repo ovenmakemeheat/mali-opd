@@ -3,9 +3,25 @@ import type {
 	ChecklistItem,
 	ConsultationState,
 	DifferentialDiagnosis,
+	Evidence,
 	PatientInfo,
 	Symptom,
 } from "@/types";
+
+export const MOCK_EVIDENCES: Evidence[] = [
+	{
+		id: "ev1",
+		text: "Patient presents with chest pain for the past 3 days. Pain is on the left side, radiating to the left arm",
+		source: "transcript",
+		timestamp: new Date().toISOString(),
+	},
+	{
+		id: "ev2",
+		text: "Shortness of breath on exertion for about a week",
+		source: "transcript",
+		timestamp: new Date(Date.now() - 60_000).toISOString(),
+	},
+];
 
 const MOCK_PATIENTS: PatientInfo[] = [
 	{
@@ -39,6 +55,7 @@ const MOCK_SYMPTOMS: Symptom[] = [
 		severity: "moderate",
 		notes: "Worse on exertion",
 		confidence: 0.95,
+		evidenceId: "ev1",
 	},
 	{
 		id: "s2",
@@ -47,6 +64,7 @@ const MOCK_SYMPTOMS: Symptom[] = [
 		severity: "mild",
 		notes: "On climbing stairs",
 		confidence: 0.88,
+		evidenceId: "ev2",
 	},
 ];
 
@@ -57,6 +75,7 @@ const MOCK_CHECKLIST: ChecklistItem[] = [
 		category: "HPI",
 		status: "answered",
 		answer: "Left side, radiating to left arm",
+		evidenceId: "ev1",
 	},
 	{
 		id: "c2",
@@ -64,6 +83,7 @@ const MOCK_CHECKLIST: ChecklistItem[] = [
 		category: "HPI",
 		status: "answered",
 		answer: "3 days",
+		evidenceId: "ev1",
 	},
 	{
 		id: "c3",
@@ -94,33 +114,75 @@ const MOCK_DIFFERENTIALS: DifferentialDiagnosis[] = [
 		diagnosis: "Unstable Angina",
 		confidence: 0.72,
 		supportingEvidence: [
-			"Chest pain on exertion",
-			"Radiating to left arm",
-			"History of CAD",
+			{ text: "Chest pain on exertion", evidenceId: "ev1" },
+			{ text: "Radiating to left arm", evidenceId: "ev1" },
+			{ text: "History of CAD" },
 		],
-		missingEvidence: ["ECG results", "Troponin levels"],
+		missingEvidence: [
+			{
+				text: "ECG results",
+				priority: "high",
+				mappedQuestion: "Do you have any recent ECG results?",
+			},
+			{
+				text: "Troponin levels",
+				priority: "high",
+				mappedQuestion: "Have we checked troponin levels?",
+			},
+		],
 	},
 	{
 		id: "d2",
 		diagnosis: "Myocardial Infarction",
 		confidence: 0.45,
-		supportingEvidence: ["Chest pain", "Diabetes", "Age >45"],
-		missingEvidence: ["ECG changes", "Troponin elevation", "Duration >20min"],
+		supportingEvidence: [
+			{ text: "Chest pain", evidenceId: "ev1" },
+			{ text: "Diabetes" },
+			{ text: "Age >45" },
+		],
+		missingEvidence: [
+			{
+				text: "ECG changes",
+				priority: "high",
+				mappedQuestion: "Are there any newly observed ECG changes?",
+			},
+			{
+				text: "Troponin elevation",
+				priority: "high",
+				mappedQuestion: "Have we seen a rise in troponin?",
+			},
+			{
+				text: "Duration >20min",
+				priority: "medium",
+				mappedQuestion: "Did the pain last longer than 20 minutes?",
+			},
+		],
 	},
 	{
 		id: "d3",
 		diagnosis: "GERD",
 		confidence: 0.35,
-		supportingEvidence: ["Chest pain"],
-		missingEvidence: ["Relation to meals", "Response to antacids"],
+		supportingEvidence: [{ text: "Chest pain", evidenceId: "ev1" }],
+		missingEvidence: [
+			{
+				text: "Relation to meals",
+				priority: "medium",
+				mappedQuestion: "Does the pain get worse after eating?",
+			},
+			{
+				text: "Response to antacids",
+				priority: "low",
+				mappedQuestion: "Have you tried antacids, and did they help?",
+			},
+		],
 	},
 ];
 
 const MOCK_SUGGESTED_QUESTIONS = [
-	"Ask about radiation of pain to jaw or back",
-	"Ask about associated symptoms: nausea, sweating",
-	"Ask about smoking history",
-	"Consider asking about family history of heart disease",
+	"RED FLAG: Ask if pain radiates to the jaw, neck, or back",
+	"Ask about associated symptoms: nausea, sweating, shortness of breath",
+	"Clarify if the pain is exertional or occurs at rest",
+	"Consider asking about smoking history or family history of early heart disease",
 ];
 
 function generateSessionId(): string {
@@ -140,6 +202,7 @@ export async function createMockSession(
 	return {
 		sessionId: generateSessionId(),
 		patient,
+		evidences: [],
 		symptoms: [],
 		clinicalFacts: [],
 		checklist: [],
@@ -161,6 +224,7 @@ export async function processMockTranscription(
 		suggestedQuestions: MOCK_SUGGESTED_QUESTIONS,
 		differentials: MOCK_DIFFERENTIALS,
 		checklistUpdates: MOCK_CHECKLIST,
+		evidences: MOCK_EVIDENCES,
 	};
 }
 
@@ -169,14 +233,28 @@ export function getMockConsultationState(): ConsultationState {
 	return {
 		sessionId: generateSessionId(),
 		patient: MOCK_PATIENTS[0],
+		evidences: MOCK_EVIDENCES,
 		symptoms: MOCK_SYMPTOMS,
 		clinicalFacts: [],
 		checklist: MOCK_CHECKLIST,
 		differentials: MOCK_DIFFERENTIALS,
 		transcriptSegments: [
-			"Patient presents with chest pain for the past 3 days",
-			"Pain is on the left side, radiating to the left arm",
-			"Shortness of breath on exertion for about a week",
+			{
+				id: "ts1",
+				text: "Patient presents with chest pain for the past 3 days",
+				evidenceId: "ev1",
+			},
+			{
+				id: "ts2",
+				text: "Pain is on the left side, radiating to the left arm",
+				evidenceId: "ev1",
+			},
+			{
+				id: "ts3",
+				text: "Shortness of breath on exertion for about a week",
+				evidenceId: "ev2",
+			},
+			{ id: "ts4", text: "Okay, I will note that down. Any other symptoms?" },
 		],
 		suggestedQuestions: MOCK_SUGGESTED_QUESTIONS,
 		createdAt: now,

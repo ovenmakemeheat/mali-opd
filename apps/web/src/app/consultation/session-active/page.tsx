@@ -48,7 +48,7 @@ export default function ConsultationPage() {
 
 				{/* Center Pane: Active Clinical Picture (45%) */}
 				<ResizablePanel defaultSize={45} minSize={30}>
-					<div className="flex h-full flex-col gap-4 overflow-y-auto px-2">
+					<div className="h-full space-y-4 overflow-y-auto px-2 pb-4">
 						<div className="space-y-2">
 							<h3 className="px-1 font-semibold text-primary">
 								Active Symptoms
@@ -56,7 +56,7 @@ export default function ConsultationPage() {
 							<SymptomList symptoms={symptoms} />
 						</div>
 
-						<div className="mt-2 space-y-2">
+						<div className="space-y-2">
 							<h3 className="px-1 font-semibold text-primary">
 								Differential Diagnosis
 							</h3>
@@ -72,8 +72,11 @@ export default function ConsultationPage() {
 
 				{/* Right Pane: Action & Guidance (30%) */}
 				<ResizablePanel defaultSize={30} minSize={20}>
-					<div className="flex h-full flex-col gap-4 overflow-y-auto pl-2">
-						<SuggestionPanel suggestions={suggestedQuestions} />
+					<div className="h-full space-y-4 overflow-y-auto pr-1 pb-4 pl-2">
+						<SuggestionPanel
+							differentials={differentials}
+							suggestions={suggestedQuestions}
+						/>
 						<ChecklistPanel items={checklist} />
 					</div>
 				</ResizablePanel>

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist_Mono, Raleway } from "next/font/google";
 import "../index.css";
 import Header from "@/components/header";
 import Providers from "@/components/providers";
 
-const geistSans = Geist({
-	variable: "--font-geist-sans",
+const raleway = Raleway({
+	variable: "--font-sans",
 	subsets: ["latin"],
 });
 
@@ -26,13 +26,11 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en" suppressHydrationWarning>
-			<body
-				className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-			>
+			<body className={`${raleway.variable} ${geistMono.variable} antialiased`}>
 				<Providers>
-					<div className="grid h-svh grid-rows-[auto_1fr]">
+					<div className="grid h-svh grid-rows-[auto_1fr] overflow-hidden">
 						<Header />
-						{children}
+						<main className="h-full min-h-0 overflow-hidden">{children}</main>
 					</div>
 				</Providers>
 			</body>

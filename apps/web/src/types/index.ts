@@ -1,5 +1,12 @@
 import { z } from "zod";
 
+export const EvidenceSchema = z.object({
+	id: z.string(),
+	text: z.string(),
+	timestamp: z.string().optional(),
+	source: z.enum(["transcript", "manual"]),
+});
+
 export const SymptomSchema = z.object({
 	id: z.string().optional(),
 	name: z.string(),
@@ -7,6 +14,7 @@ export const SymptomSchema = z.object({
 	severity: z.enum(["mild", "moderate", "severe"]).nullable(),
 	notes: z.string().nullable(),
 	confidence: z.number().min(0).max(1),
+	evidenceId: z.string().optional(),
 });
 
 export const ClinicalFactSchema = z.object({
@@ -28,14 +36,26 @@ export const ChecklistItemSchema = z.object({
 	category: z.string(),
 	status: ChecklistStatusSchema,
 	answer: z.string().nullable(),
+	evidenceId: z.string().optional(),
+});
+
+export const SupportingEvidenceSchema = z.object({
+	text: z.string(),
+	evidenceId: z.string().optional(),
+});
+
+export const MissingEvidenceSchema = z.object({
+	text: z.string(),
+	priority: z.enum(["high", "medium", "low"]),
+	mappedQuestion: z.string().optional(),
 });
 
 export const DifferentialDiagnosisSchema = z.object({
 	id: z.string(),
 	diagnosis: z.string(),
 	confidence: z.number().min(0).max(1),
-	supportingEvidence: z.array(z.string()),
-	missingEvidence: z.array(z.string()),
+	supportingEvidence: z.array(SupportingEvidenceSchema),
+	missingEvidence: z.array(MissingEvidenceSchema),
 });
 
 export const PatientInfoSchema = z.object({
@@ -46,14 +66,22 @@ export const PatientInfoSchema = z.object({
 	history: z.array(z.string()),
 });
 
+export const TranscriptSegmentSchema = z.object({
+	id: z.string().optional(),
+	text: z.string(),
+	evidenceId: z.string().optional(),
+	timestamp: z.string().optional(),
+});
+
 export const ConsultationStateSchema = z.object({
 	sessionId: z.string(),
 	patient: PatientInfoSchema.nullable(),
+	evidences: z.array(EvidenceSchema),
 	symptoms: z.array(SymptomSchema),
 	clinicalFacts: z.array(ClinicalFactSchema),
 	checklist: z.array(ChecklistItemSchema),
 	differentials: z.array(DifferentialDiagnosisSchema),
-	transcriptSegments: z.array(z.string()),
+	transcriptSegments: z.array(TranscriptSegmentSchema),
 	suggestedQuestions: z.array(z.string()),
 	createdAt: z.string(),
 	updatedAt: z.string(),
@@ -72,6 +100,7 @@ export const TranscriptionInputSchema = z.object({
 });
 
 export const AIResponseSchema = z.object({
+	evidences: z.array(EvidenceSchema).optional(),
 	extractedSymptoms: z.array(SymptomSchema),
 	clinicalFacts: z.array(ClinicalFactSchema),
 	suggestedQuestions: z.array(z.string()),
@@ -79,14 +108,18 @@ export const AIResponseSchema = z.object({
 	checklistUpdates: z.array(ChecklistItemSchema),
 });
 
+export type Evidence = z.infer<typeof EvidenceSchema>;
 export type Symptom = z.infer<typeof SymptomSchema>;
 export type ClinicalFact = z.infer<typeof ClinicalFactSchema>;
 export type ChecklistStatus = z.infer<typeof ChecklistStatusSchema>;
 export type ChecklistItem = z.infer<typeof ChecklistItemSchema>;
+export type SupportingEvidence = z.infer<typeof SupportingEvidenceSchema>;
+export type MissingEvidence = z.infer<typeof MissingEvidenceSchema>;
 export type DifferentialDiagnosis = z.infer<typeof DifferentialDiagnosisSchema>;
 export type PatientInfo = z.infer<typeof PatientInfoSchema>;
 export type ConsultationState = z.infer<typeof ConsultationStateSchema>;
 export type SessionCreate = z.infer<typeof SessionCreateSchema>;
+export type TranscriptSegment = z.infer<typeof TranscriptSegmentSchema>;
 export type TranscriptionInput = z.infer<typeof TranscriptionInputSchema>;
 export type AIResponse = z.infer<typeof AIResponseSchema>;
 

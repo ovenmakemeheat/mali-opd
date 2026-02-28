@@ -5,6 +5,8 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import type { ReactNode } from "react";
 import { useEffect, useState } from "react";
+import { EvidenceProvider } from "@/components/consultation/evidence-context";
+import { GlobalEvidenceViewer } from "@/components/consultation/global-evidence-viewer";
 import { RecordingIndicator } from "@/components/consultation/recording-indicator";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -32,6 +34,7 @@ export default function ConsultationLayout({
 		reset,
 		addTranscriptSegment,
 		updateFromAI,
+		transcriptSegments,
 	} = useConsultationStore();
 
 	useEffect(() => {
@@ -47,9 +50,21 @@ export default function ConsultationLayout({
 				suggestedQuestions: mockState.suggestedQuestions,
 				differentials: mockState.differentials,
 				checklistUpdates: mockState.checklist,
+				evidences: mockState.evidences,
 			});
+			if (transcriptSegments.length === 0) {
+				for (const segment of mockState.transcriptSegments) {
+					addTranscriptSegment(segment);
+				}
+			}
 		}
-	}, [mounted, symptoms.length, updateFromAI]);
+	}, [
+		mounted,
+		symptoms.length,
+		updateFromAI,
+		transcriptSegments.length,
+		addTranscriptSegment,
+	]);
 
 	const simulateTranscription = async () => {
 		const sampleTexts = [
@@ -60,7 +75,11 @@ export default function ConsultationLayout({
 			"Pain worsens with exertion and improves with rest",
 		];
 		const text = sampleTexts[Math.floor(Math.random() * sampleTexts.length)];
-		addTranscriptSegment(text);
+		addTranscriptSegment({
+			id: Math.random().toString(36).substring(7),
+			text,
+			timestamp: new Date().toISOString(),
+		});
 		await processTranscription(text);
 	};
 
@@ -103,62 +122,74 @@ export default function ConsultationLayout({
 	];
 
 	return (
-		<div className="flex h-full flex-col">
-			<div className="border-b bg-muted/30 px-4 py-2">
-				<div className="flex items-center justify-between">
-					<div className="flex items-center gap-4">
-						{patient ? (
-							<div className="flex items-center gap-2">
-								<span className="font-medium">{patient.name}</span>
-								<span className="text-muted-foreground text-sm">
-									({patient.id})
+		<EvidenceProvider>
+			<div className="flex h-full min-h-0 flex-col">
+				<div className="shrink-0 border-b bg-muted/30 px-4 py-2">
+					<div className="flex items-center justify-between">
+						<div className="flex items-center gap-4">
+							{patient ? (
+								<div className="flex items-center gap-2">
+									<span className="font-medium">{patient.name}</span>
+									<span className="text-muted-foreground text-sm">
+										({patient.id})
+									</span>
+									{patient.age && (
+										<Badge variant="outline">{patient.age}y</Badge>
+									)}
+								</div>
+							) : (
+								<span className="text-muted-foreground">
+									No patient selected
 								</span>
-								{patient.age && <Badge variant="outline">{patient.age}y</Badge>}
-							</div>
-						) : (
-							<span className="text-muted-foreground">No patient selected</span>
-						)}
+							)}
 
-						<div className="flex items-center gap-1">
-							{tabs.map((tab) => {
-								const isActive = pathname === tab.href;
-								return (
-									<Link
-										className={`rounded-md px-3 py-1.5 text-sm transition-colors ${
-											isActive
-												? "bg-primary text-primary-foreground"
-												: "hover:bg-muted"
-										}`}
-										// biome-ignore lint/suspicious/noExplicitAny: Next.js typed routes require casting here
-										href={tab.href as any}
-										key={tab.href}
-									>
-										{tab.icon} {tab.label}
-									</Link>
-								);
-							})}
+							<div className="flex items-center gap-1">
+								{tabs.map((tab) => {
+									const isActive = pathname === tab.href;
+									return (
+										<Link
+											className={`flex items-center gap-2 rounded-md px-3 py-1.5 text-sm transition-colors ${
+												isActive
+													? "bg-primary text-primary-foreground"
+													: "hover:bg-muted"
+											}`}
+											// biome-ignore lint/suspicious/noExplicitAny: Next.js typed routes require casting here
+											href={tab.href as any}
+											key={tab.href}
+										>
+											{tab.icon}
+											<span>{tab.label}</span>
+										</Link>
+									);
+								})}
+							</div>
+						</div>
+
+						<div className="flex items-center gap-2">
+							<RecordingIndicator
+								isProcessing={isProcessing}
+								isRecording={isRecording}
+								onToggle={() => {
+									toggleRecording();
+									if (MOCKUP_MODE && !isRecording) {
+										simulateTranscription();
+									}
+								}}
+							/>
+							<Button
+								onClick={handleEndSession}
+								size="sm"
+								variant="destructive"
+							>
+								End Session
+							</Button>
 						</div>
 					</div>
-
-					<div className="flex items-center gap-2">
-						<RecordingIndicator
-							isProcessing={isProcessing}
-							isRecording={isRecording}
-							onToggle={() => {
-								toggleRecording();
-								if (MOCKUP_MODE && !isRecording) {
-									simulateTranscription();
-								}
-							}}
-						/>
-						<Button onClick={handleEndSession} size="sm" variant="destructive">
-							End Session
-						</Button>
-					</div>
 				</div>
-			</div>
 
-			<div className="flex-1 overflow-hidden">{children}</div>
-		</div>
+				<div className="flex-1 overflow-hidden">{children}</div>
+				<GlobalEvidenceViewer />
+			</div>
+		</EvidenceProvider>
 	);
 }

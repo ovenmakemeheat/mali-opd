@@ -50,14 +50,16 @@ export default function HomePage() {
 	};
 
 	return (
-		<div className="container mx-auto max-w-5xl py-8">
-			<div className="mb-12 text-center">
+		<div className="flex h-full flex-col items-center justify-center p-4">
+			<div className="mb-8 text-center">
 				<div className="mb-4 flex justify-center">
-					<div className="rounded-full bg-primary/10 p-4">
-						<Stethoscope className="h-12 w-12 text-primary" />
+					<div className="rounded-full bg-primary/10 p-4 shadow-sm">
+						<Stethoscope className="h-10 w-10 text-primary" />
 					</div>
 				</div>
-				<h1 className="mb-2 font-bold text-3xl">MALI OPD Assistant</h1>
+				<h1 className="mb-2 font-bold text-2xl tracking-tight">
+					MALI OPD Assistant
+				</h1>
 				<p className="text-muted-foreground">
 					Select a patient or start a new walk-in session
 				</p>
@@ -68,14 +70,16 @@ export default function HomePage() {
 				)}
 			</div>
 
-			<div className="mx-auto grid max-w-4xl gap-6 md:grid-cols-2">
+			<div className="flex w-full max-w-4xl flex-col gap-6 md:h-[420px] md:flex-row">
 				{/* Left Column: Existing Patients */}
-				<Card className="flex h-full flex-col shadow-sm">
-					<CardHeader className="border-b bg-muted/20 pb-3">
-						<CardTitle className="text-lg">Select Patient</CardTitle>
+				<Card className="flex flex-1 flex-col overflow-hidden shadow-sm transition-shadow hover:shadow-md dark:bg-card">
+					<CardHeader className="border-b bg-muted/30 pb-4 dark:bg-muted/10">
+						<CardTitle className="font-semibold text-lg">
+							Select Patient
+						</CardTitle>
 					</CardHeader>
-					<CardContent className="flex-1 space-y-4 pt-4">
-						<div className="relative">
+					<CardContent className="flex min-h-0 flex-1 flex-col space-y-4 p-4">
+						<div className="relative shrink-0">
 							<Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
 							<Input
 								className="bg-background pl-9 focus-visible:ring-primary/50"
@@ -85,59 +89,61 @@ export default function HomePage() {
 							/>
 						</div>
 
-						<div className="grid max-h-[300px] gap-2 overflow-y-auto pr-1">
-							{filtered.map((patient) => (
-								<button
-									className="group flex items-center justify-between rounded-lg border border-transparent p-3 text-left transition-all hover:border-primary/20 hover:bg-primary/5 hover:shadow-sm"
-									disabled={isProcessing}
-									key={patient.id}
-									onClick={() => handleSelectPatient(patient)}
-									type="button"
-								>
-									<div>
-										<p className="font-medium transition-colors group-hover:text-primary">
-											{patient.name}
-										</p>
-										<p className="text-muted-foreground text-xs">
-											ID: {patient.id}
-										</p>
+						<div className="min-h-0 flex-1 overflow-y-auto pr-2">
+							<div className="flex flex-col gap-2">
+								{filtered.map((patient) => (
+									<button
+										className="group flex items-center justify-between rounded-lg border border-transparent bg-muted/20 p-3 text-left transition-all hover:border-primary/30 hover:bg-primary/5 hover:shadow-sm dark:bg-muted/5 dark:hover:border-primary/40 dark:hover:bg-primary/10"
+										disabled={isProcessing}
+										key={patient.id}
+										onClick={() => handleSelectPatient(patient)}
+										type="button"
+									>
+										<div>
+											<p className="font-medium transition-colors group-hover:text-primary">
+												{patient.name}
+											</p>
+											<p className="text-muted-foreground text-xs">
+												ID: {patient.id}
+											</p>
+										</div>
+										<div className="flex gap-1">
+											{patient.age && (
+												<Badge className="bg-background" variant="outline">
+													{patient.age}y
+												</Badge>
+											)}
+											{patient.gender && (
+												<Badge
+													className="bg-background capitalize"
+													variant="outline"
+												>
+													{patient.gender}
+												</Badge>
+											)}
+										</div>
+									</button>
+								))}
+								{filtered.length === 0 && (
+									<div className="py-8 text-center text-muted-foreground text-sm">
+										No patients found.
 									</div>
-									<div className="flex gap-1">
-										{patient.age && (
-											<Badge className="bg-background" variant="outline">
-												{patient.age}y
-											</Badge>
-										)}
-										{patient.gender && (
-											<Badge
-												className="bg-background capitalize"
-												variant="outline"
-											>
-												{patient.gender}
-											</Badge>
-										)}
-									</div>
-								</button>
-							))}
-							{filtered.length === 0 && (
-								<div className="py-8 text-center text-muted-foreground text-sm">
-									No patients found.
-								</div>
-							)}
+								)}
+							</div>
 						</div>
 					</CardContent>
 				</Card>
 
 				{/* Right Column: New Patient Walk-in */}
-				<Card className="flex h-full flex-col border-primary/20 bg-primary/5 shadow-sm">
-					<CardHeader className="border-primary/10 border-b pb-3">
-						<CardTitle className="flex items-center gap-2 text-lg text-primary">
+				<Card className="flex flex-1 flex-col overflow-hidden border-primary/20 bg-primary/5 shadow-sm transition-shadow hover:shadow-md dark:border-primary/10 dark:bg-primary/5">
+					<CardHeader className="border-primary/10 border-b bg-background/50 pb-4 dark:border-primary/5 dark:bg-background/80">
+						<CardTitle className="flex items-center gap-2 font-semibold text-lg text-primary">
 							<UserPlus className="h-5 w-5" />
 							Quick Start Walk-in
 						</CardTitle>
 					</CardHeader>
-					<CardContent className="flex flex-1 flex-col justify-center space-y-4 pt-6">
-						<div className="space-y-4 px-2">
+					<CardContent className="flex flex-1 flex-col justify-center space-y-5 p-6">
+						<div className="space-y-5">
 							<div className="space-y-1.5">
 								<label className="font-medium text-sm" htmlFor="patientName">
 									Patient Name
