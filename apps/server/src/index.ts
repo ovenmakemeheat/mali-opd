@@ -1,5 +1,5 @@
-import { auth } from "@my-better-t-app/auth";
-import { env } from "@my-better-t-app/env/server";
+import { auth } from "@mali-opd/auth";
+import { env } from "@mali-opd/env/server";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
@@ -20,7 +20,7 @@ app.use(
 app.on(["POST", "GET"], "/api/auth/*", (c) => auth.handler(c.req.raw));
 
 app.get("/", (c) => {
-	return c.text("OK");
+	return c.text("Hello I'm MALI");
 });
 
 export default app;

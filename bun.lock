@@ -3,15 +3,15 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "my-better-t-app",
+      "name": "mali-opd",
       "dependencies": {
-        "@my-better-t-app/env": "workspace:*",
+        "@mali-opd/env": "workspace:*",
         "dotenv": "catalog:",
         "zod": "catalog:",
       },
       "devDependencies": {
         "@biomejs/biome": "2.4.0",
-        "@my-better-t-app/config": "workspace:*",
+        "@mali-opd/config": "workspace:*",
         "husky": "latest",
         "lint-staged": "latest",
         "turbo": "^2.6.3",
@@ -22,16 +22,16 @@
     "apps/server": {
       "name": "server",
       "dependencies": {
-        "@my-better-t-app/auth": "workspace:*",
-        "@my-better-t-app/db": "workspace:*",
-        "@my-better-t-app/env": "workspace:*",
+        "@mali-opd/auth": "workspace:*",
+        "@mali-opd/db": "workspace:*",
+        "@mali-opd/env": "workspace:*",
         "better-auth": "catalog:",
         "dotenv": "catalog:",
         "hono": "^4.8.2",
         "zod": "catalog:",
       },
       "devDependencies": {
-        "@my-better-t-app/config": "workspace:*",
+        "@mali-opd/config": "workspace:*",
         "@types/bun": "catalog:",
         "tsdown": "^0.16.5",
         "typescript": "catalog:",
@@ -42,7 +42,7 @@
       "version": "0.1.0",
       "dependencies": {
         "@base-ui/react": "^1.0.0",
-        "@my-better-t-app/env": "workspace:*",
+        "@mali-opd/env": "workspace:*",
         "babel-plugin-react-compiler": "^1.0.0",
         "class-variance-authority": "^0.7.1",
         "clsx": "^2.1.1",
@@ -61,7 +61,7 @@
         "zustand": "^5.0.11",
       },
       "devDependencies": {
-        "@my-better-t-app/config": "workspace:*",
+        "@mali-opd/config": "workspace:*",
         "@tailwindcss/postcss": "^4.1.10",
         "@types/node": "^20",
         "@types/react": "^19.2.7",
@@ -71,27 +71,27 @@
       },
     },
     "packages/auth": {
-      "name": "@my-better-t-app/auth",
+      "name": "@mali-opd/auth",
       "dependencies": {
-        "@my-better-t-app/db": "workspace:*",
-        "@my-better-t-app/env": "workspace:*",
+        "@mali-opd/db": "workspace:*",
+        "@mali-opd/env": "workspace:*",
         "better-auth": "catalog:",
         "dotenv": "catalog:",
         "zod": "catalog:",
       },
       "devDependencies": {
-        "@my-better-t-app/config": "workspace:*",
+        "@mali-opd/config": "workspace:*",
         "typescript": "catalog:",
       },
     },
     "packages/config": {
-      "name": "@my-better-t-app/config",
+      "name": "@mali-opd/config",
       "version": "0.0.0",
     },
     "packages/db": {
-      "name": "@my-better-t-app/db",
+      "name": "@mali-opd/db",
       "dependencies": {
-        "@my-better-t-app/env": "workspace:*",
+        "@mali-opd/env": "workspace:*",
         "@prisma/adapter-pg": "^7.2.0",
         "@prisma/client": "catalog:",
         "dotenv": "catalog:",
@@ -99,14 +99,14 @@
         "zod": "catalog:",
       },
       "devDependencies": {
-        "@my-better-t-app/config": "workspace:*",
+        "@mali-opd/config": "workspace:*",
         "@types/pg": "^8.16.0",
         "prisma": "^7.2.0",
         "typescript": "catalog:",
       },
     },
     "packages/env": {
-      "name": "@my-better-t-app/env",
+      "name": "@mali-opd/env",
       "version": "0.0.0",
       "dependencies": {
         "@t3-oss/env-core": "^0.13.1",
@@ -115,7 +115,7 @@
         "zod": "catalog:",
       },
       "devDependencies": {
-        "@my-better-t-app/config": "workspace:*",
+        "@mali-opd/config": "workspace:*",
         "typescript": "catalog:",
       },
     },
@@ -347,13 +347,13 @@
 
     "@mswjs/interceptors": ["@mswjs/interceptors@0.41.3", "", { "dependencies": { "@open-draft/deferred-promise": "^2.2.0", "@open-draft/logger": "^0.3.0", "@open-draft/until": "^2.0.0", "is-node-process": "^1.2.0", "outvariant": "^1.4.3", "strict-event-emitter": "^0.5.1" } }, "sha512-cXu86tF4VQVfwz8W1SPbhoRyHJkti6mjH/XJIxp40jhO4j2k1m4KYrEykxqWPkFF3vrK4rgQppBh//AwyGSXPA=="],
 
-    "@my-better-t-app/auth": ["@my-better-t-app/auth@workspace:packages/auth"],
+    "@mali-opd/auth": ["@mali-opd/auth@workspace:packages/auth"],
 
-    "@my-better-t-app/config": ["@my-better-t-app/config@workspace:packages/config"],
+    "@mali-opd/config": ["@mali-opd/config@workspace:packages/config"],
 
-    "@my-better-t-app/db": ["@my-better-t-app/db@workspace:packages/db"],
+    "@mali-opd/db": ["@mali-opd/db@workspace:packages/db"],
 
-    "@my-better-t-app/env": ["@my-better-t-app/env@workspace:packages/env"],
+    "@mali-opd/env": ["@mali-opd/env@workspace:packages/env"],
 
     "@napi-rs/wasm-runtime": ["@napi-rs/wasm-runtime@1.1.1", "", { "dependencies": { "@emnapi/core": "^1.7.1", "@emnapi/runtime": "^1.7.1", "@tybys/wasm-util": "^0.10.1" } }, "sha512-p64ah1M1ld8xjWv3qbvFwHiFVWrq1yFvV4f7w+mzaqiR4IlSgkqhcRdHwsGgomwzBH51sRY4NEowLxnaBjcW/A=="],
 

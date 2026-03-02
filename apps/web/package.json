@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@base-ui/react": "^1.0.0",
-    "@my-better-t-app/env": "workspace:*",
+    "@mali-opd/env": "workspace:*",
     "babel-plugin-react-compiler": "^1.0.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -28,7 +28,7 @@
     "zustand": "^5.0.11"
   },
   "devDependencies": {
-    "@my-better-t-app/config": "workspace:*",
+    "@mali-opd/config": "workspace:*",
     "@tailwindcss/postcss": "^4.1.10",
     "@types/node": "^20",
     "@types/react": "^19.2.7",

@@ -1,5 +1,5 @@
-import prisma from "@my-better-t-app/db";
-import { env } from "@my-better-t-app/env/server";
+import prisma from "@mali-opd/db";
+import { env } from "@mali-opd/env/server";
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
 

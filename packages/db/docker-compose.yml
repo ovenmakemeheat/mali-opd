@@ -1,17 +1,17 @@
-name: my-better-t-app
+name: mali-opd
 
 services:
   postgres:
     image: postgres
-    container_name: my-better-t-app-postgres
+    container_name: mali-opd-postgres
     environment:
-      POSTGRES_DB: my-better-t-app
+      POSTGRES_DB: mali-opd
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
     ports:
       - "5432:5432"
     volumes:
-      - my-better-t-app_postgres_data:/var/lib/postgresql
+      - mali-opd_postgres_data:/var/lib/postgresql
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres"]
       interval: 10s
@@ -20,4 +20,4 @@ services:
     restart: unless-stopped
 
 volumes:
-  my-better-t-app_postgres_data:
+  mali-opd_postgres_data:

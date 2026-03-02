@@ -1,5 +1,5 @@
 {
-  "name": "@my-better-t-app/db",
+  "name": "@mali-opd/db",
   "type": "module",
   "exports": {
     ".": {
@@ -20,7 +20,7 @@
     "db:down": "docker compose down"
   },
   "dependencies": {
-    "@my-better-t-app/env": "workspace:*",
+    "@mali-opd/env": "workspace:*",
     "@prisma/adapter-pg": "^7.2.0",
     "@prisma/client": "catalog:",
     "dotenv": "catalog:",
@@ -28,7 +28,7 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@my-better-t-app/config": "workspace:*",
+    "@mali-opd/config": "workspace:*",
     "@types/pg": "^8.16.0",
     "prisma": "^7.2.0",
     "typescript": "catalog:"

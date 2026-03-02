@@ -1,5 +1,5 @@
 {
-  "name": "@my-better-t-app/env",
+  "name": "@mali-opd/env",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -14,7 +14,7 @@
     "zod": "catalog:"
   },
   "devDependencies": {
-    "@my-better-t-app/config": "workspace:*",
+    "@mali-opd/config": "workspace:*",
     "typescript": "catalog:"
   }
 }
