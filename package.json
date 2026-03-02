@@ -9,7 +9,10 @@
     "catalog": {
       "dotenv": "^17.2.2",
       "zod": "^4.1.13",
-      "typescript": "^5"
+      "typescript": "^5",
+      "better-auth": "^1.2.7",
+      "@types/bun": "latest",
+      "@prisma/client": "^7.2.0"
     }
   },
   "type": "module",
@@ -22,7 +25,16 @@
     "check": "ultracite check",
     "fix": "ultracite fix",
     "prepare": "husky",
-    "ruler:apply": "bunx @intellectronica/ruler@latest apply --local-only"
+    "ruler:apply": "bunx @intellectronica/ruler@latest apply --local-only",
+    "dev:server": "turbo -F server dev",
+    "db:push": "turbo -F @my-better-t-app/db db:push",
+    "db:studio": "turbo -F @my-better-t-app/db db:studio",
+    "db:generate": "turbo -F @my-better-t-app/db db:generate",
+    "db:migrate": "turbo -F @my-better-t-app/db db:migrate",
+    "db:start": "turbo -F @my-better-t-app/db db:start",
+    "db:watch": "turbo -F @my-better-t-app/db db:watch",
+    "db:stop": "turbo -F @my-better-t-app/db db:stop",
+    "db:down": "turbo -F @my-better-t-app/db db:down"
   },
   "dependencies": {
     "@my-better-t-app/env": "workspace:*",
