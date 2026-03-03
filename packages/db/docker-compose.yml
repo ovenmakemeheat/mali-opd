@@ -1,0 +1,23 @@
+name: mali-opd
+
+services:
+  postgres:
+    image: postgres:18
+    container_name: mali-opd-postgres
+    environment:
+      POSTGRES_DB: mali-opd
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    ports:
+      - "5432:5432"
+    volumes:
+      - mali-opd_postgres_data:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+volumes:
+  mali-opd_postgres_data:

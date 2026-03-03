@@ -1,0 +1,24 @@
+{
+  "name": "@mali-opd/auth",
+  "type": "module",
+  "exports": {
+    ".": {
+      "default": "./src/index.ts"
+    },
+    "./*": {
+      "default": "./src/*.ts"
+    }
+  },
+  "scripts": {},
+  "dependencies": {
+    "@mali-opd/db": "workspace:*",
+    "@mali-opd/env": "workspace:*",
+    "better-auth": "catalog:",
+    "dotenv": "catalog:",
+    "zod": "catalog:"
+  },
+  "devDependencies": {
+    "@mali-opd/config": "workspace:*",
+    "typescript": "catalog:"
+  }
+}

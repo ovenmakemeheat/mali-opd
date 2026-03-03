@@ -1,5 +1,5 @@
 {
-  "name": "my-better-t-app",
+  "name": "mali-opd",
   "private": true,
   "workspaces": {
     "packages": [
@@ -9,7 +9,10 @@
     "catalog": {
       "dotenv": "^17.2.2",
       "zod": "^4.1.13",
-      "typescript": "^5"
+      "typescript": "^5",
+      "better-auth": "^1.2.7",
+      "@types/bun": "latest",
+      "@prisma/client": "^7.2.0"
     }
   },
   "type": "module",
@@ -22,16 +25,25 @@
     "check": "ultracite check",
     "fix": "ultracite fix",
     "prepare": "husky",
-    "ruler:apply": "bunx @intellectronica/ruler@latest apply --local-only"
+    "ruler:apply": "bunx @intellectronica/ruler@latest apply --local-only",
+    "dev:server": "turbo -F server dev",
+    "db:push": "turbo -F @mali-opd/db db:push",
+    "db:studio": "turbo -F @mali-opd/db db:studio",
+    "db:generate": "turbo -F @mali-opd/db db:generate",
+    "db:migrate": "turbo -F @mali-opd/db db:migrate",
+    "db:start": "turbo -F @mali-opd/db db:start",
+    "db:watch": "turbo -F @mali-opd/db db:watch",
+    "db:stop": "turbo -F @mali-opd/db db:stop",
+    "db:down": "turbo -F @mali-opd/db db:down"
   },
   "dependencies": {
-    "@my-better-t-app/env": "workspace:*",
+    "@mali-opd/env": "workspace:*",
     "dotenv": "catalog:",
     "zod": "catalog:"
   },
   "devDependencies": {
     "@biomejs/biome": "2.4.0",
-    "@my-better-t-app/config": "workspace:*",
+    "@mali-opd/config": "workspace:*",
     "husky": "latest",
     "lint-staged": "latest",
     "turbo": "^2.6.3",

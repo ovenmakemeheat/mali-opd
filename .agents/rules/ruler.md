@@ -135,7 +135,7 @@ Most formatting and common issues are automatically fixed by Biome. Run `bun x u
 
 # Better-T-Stack Project Rules
 
-This is a my-better-t-app project created with Better-T-Stack CLI.
+This is a mali-opd project created with Better-T-Stack CLI.
 
 ## Project Structure
 
