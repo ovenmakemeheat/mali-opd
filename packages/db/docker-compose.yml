@@ -2,12 +2,12 @@ name: mali-opd
 
 services:
   postgres:
-    image: postgres
+    image: postgres:18
     container_name: mali-opd-postgres
     environment:
       POSTGRES_DB: mali-opd
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: root_mali
+      POSTGRES_PASSWORD: D0ct02+Nu2$3
     ports:
       - "5432:5432"
     volumes:
