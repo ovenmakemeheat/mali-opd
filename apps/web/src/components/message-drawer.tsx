@@ -28,7 +28,7 @@ export function MessageDrawer() {
 			{/* Pull tab spans full height */}
 			<button
 				aria-label="Toggle messages"
-				className="flex w-6 items-center justify-center bg-card text-muted-foreground ring-1 ring-foreground/10 transition-colors hover:text-foreground"
+				className="flex w-8 items-center justify-center border-x bg-card text-muted-foreground transition-colors hover:text-foreground"
 				onClick={() => setOpen((v) => !v)}
 				type="button"
 			>
