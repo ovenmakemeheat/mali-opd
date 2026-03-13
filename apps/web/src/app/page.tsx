@@ -3,6 +3,8 @@
 import { DynamicSection } from "@/components/dynamic-section";
 import { MessageDrawer } from "@/components/message-drawer";
 import { StaticSection } from "@/components/static-section";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Page() {
@@ -16,10 +18,16 @@ export default function Page() {
 						<TabsTrigger value="tab2">จดบันทึก</TabsTrigger>
 					</TabsList>
 					<TabsContent value="tab1">
-						<StaticSection />
+						<div className="space-y-4 py-1">
+							<StaticSection />
+							<DynamicSection />
+						</div>
 					</TabsContent>
 					<TabsContent value="tab2">
-						<DynamicSection />
+						<div className="space-y-1.5">
+							<Label htmlFor="demo-input">ชื่อ</Label>
+							<Input className="w-60" id="demo-input" placeholder="-" />
+						</div>
 					</TabsContent>
 				</Tabs>
 			</div>
