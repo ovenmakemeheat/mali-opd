@@ -31,7 +31,7 @@ export default function HomePage() {
 
 	const handleSelectPatient = async (patient: PatientInfo) => {
 		await startSession(patient);
-		router.push("/consultation/session-active");
+		router.push("/backup/consultation/session-active");
 	};
 
 	const handleCreatePatient = async () => {
@@ -46,7 +46,7 @@ export default function HomePage() {
 			history: [],
 		};
 		await startSession(patient);
-		router.push("/consultation/session-active");
+		router.push("/backup/consultation/session-active");
 	};
 
 	return (
