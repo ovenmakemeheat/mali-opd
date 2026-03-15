@@ -74,6 +74,17 @@ const suggestions: Suggestion[] = [
 	},
 ];
 
+import { Button } from "./ui/button";
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuGroup,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuShortcut,
+	DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
+
 const collectedParams = [
 	{ label: "Blood Pressure", value: "120/80 mmHg" },
 	{ label: "Heart Rate", value: "72 bpm" },
@@ -90,7 +101,33 @@ export function DynamicSection() {
 			{/* Column 1: Collected Parameters */}
 			<Card className="w-1/4" size="sm">
 				<CardHeader>
-					<CardTitle>ข้อมูลที่เก็บแล้ว</CardTitle>
+					<CardTitle className="flex items-center justify-between">
+						<div>ข้อมูลที่เก็บแล้ว</div>
+						<DropdownMenu>
+							<DropdownMenuTrigger>
+								<Button size={"sm"} variant={"outline"}>
+									+
+								</Button>
+							</DropdownMenuTrigger>
+							<DropdownMenuContent align="end" className="w-20">
+								<DropdownMenuGroup>
+									<DropdownMenuLabel>Add Input</DropdownMenuLabel>
+									<DropdownMenuItem>
+										Body Diagram
+										<DropdownMenuShortcut>+</DropdownMenuShortcut>
+									</DropdownMenuItem>
+									<DropdownMenuItem>
+										...
+										<DropdownMenuShortcut>+</DropdownMenuShortcut>
+									</DropdownMenuItem>
+									<DropdownMenuItem>
+										...
+										<DropdownMenuShortcut>+</DropdownMenuShortcut>
+									</DropdownMenuItem>
+								</DropdownMenuGroup>
+							</DropdownMenuContent>
+						</DropdownMenu>
+					</CardTitle>
 				</CardHeader>
 				<CardContent>
 					{collectedParams.map((param) => (
