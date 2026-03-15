@@ -1,6 +1,6 @@
 "use client";
 
-import { MessageCircle } from "lucide-react";
+import { AudioLines } from "lucide-react";
 import { useState } from "react";
 
 export function MessageDrawer() {
@@ -32,7 +32,7 @@ export function MessageDrawer() {
 				onClick={() => setOpen((v) => !v)}
 				type="button"
 			>
-				<MessageCircle className="size-4" />
+				<AudioLines className="size-4" />
 			</button>
 		</div>
 	);

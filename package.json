@@ -27,6 +27,7 @@
   "dependencies": {
     "@my-better-t-app/env": "workspace:*",
     "dotenv": "catalog:",
+    "healthicons-react": "^3.5.0",
     "zod": "catalog:"
   },
   "devDependencies": {

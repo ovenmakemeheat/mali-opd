@@ -9,16 +9,16 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 export default function Page() {
 	return (
-		<div className="flex min-h-screen bg-background">
+		<div className="flex h-screen bg-background">
 			<MessageDrawer />
-			<div className="flex-1 px-4 py-1">
-				<Tabs defaultValue="tab1">
+			<div className="flex min-h-0 flex-1 flex-col px-4 py-1">
+				<Tabs className="flex min-h-0 flex-1 flex-col" defaultValue="tab1">
 					<TabsList>
 						<TabsTrigger value="tab1">มะลิ</TabsTrigger>
 						<TabsTrigger value="tab2">จดบันทึก</TabsTrigger>
 					</TabsList>
-					<TabsContent value="tab1">
-						<div className="space-y-4 py-1">
+					<TabsContent className="flex-1" value="tab1">
+						<div className="flex h-full flex-col space-y-4 py-1">
 							<StaticSection />
 							<DynamicSection />
 						</div>
