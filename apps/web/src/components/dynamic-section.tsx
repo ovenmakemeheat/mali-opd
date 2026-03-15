@@ -1,4 +1,14 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "./ui/button";
+import {
+	DropdownMenu,
+	DropdownMenuContent,
+	DropdownMenuGroup,
+	DropdownMenuItem,
+	DropdownMenuLabel,
+	DropdownMenuShortcut,
+	DropdownMenuTrigger,
+} from "./ui/dropdown-menu";
 
 const collectedParams = [
 	{ label: "Blood Pressure", value: "120/80 mmHg" },
@@ -25,7 +35,33 @@ export function DynamicSection() {
 			{/* Column 1: Collected Parameters */}
 			<Card className="h-full" size="sm">
 				<CardHeader>
-					<CardTitle>Parameter ที่เก็บแล้ว</CardTitle>
+					<CardTitle className="flex items-center justify-between">
+						<div>Parameter ที่เก็บแล้ว</div>
+						<DropdownMenu>
+							<DropdownMenuTrigger>
+								<Button size={"sm"} variant={"outline"}>
+									+
+								</Button>
+							</DropdownMenuTrigger>
+							<DropdownMenuContent align="end" className="w-20">
+								<DropdownMenuGroup>
+									<DropdownMenuLabel>Add Input</DropdownMenuLabel>
+									<DropdownMenuItem>
+										Body Diagram
+										<DropdownMenuShortcut>+</DropdownMenuShortcut>
+									</DropdownMenuItem>
+									<DropdownMenuItem>
+										...
+										<DropdownMenuShortcut>+</DropdownMenuShortcut>
+									</DropdownMenuItem>
+									<DropdownMenuItem>
+										...
+										<DropdownMenuShortcut>+</DropdownMenuShortcut>
+									</DropdownMenuItem>
+								</DropdownMenuGroup>
+							</DropdownMenuContent>
+						</DropdownMenu>
+					</CardTitle>
 				</CardHeader>
 				<CardContent>
 					<div className="space-y-2">
